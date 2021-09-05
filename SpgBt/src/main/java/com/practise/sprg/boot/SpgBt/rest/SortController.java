@@ -25,6 +25,10 @@ public class SortController {
 	@Qualifier("SelectionSort")
 	private ArraySortAlgorithm selectionSort;
 	
+	@Autowired
+	@Qualifier("InsertionSort")
+	private ArraySortAlgorithm insertionSort;
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/helloWorld")
 	public void helloWorldMethod() {
 		System.out.println("Hello world program");
@@ -56,6 +60,18 @@ public class SortController {
 		Arrays.stream(array).forEach(p -> System.out.println(p));
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value = "/insertionSort")
+	public void insertionSort() {
+		int [] array = getArrayOfSize(12);
+		printLine();
+		System.out.println("Insertion Sort : Ascending");
+		insertionSort.sort(array);
+		Arrays.stream(array).forEach(p -> System.out.println(p));
+		printLine();
+		System.out.println("Insertion Sort : Descending");
+		insertionSort.reverseSort(array);
+		Arrays.stream(array).forEach(p -> System.out.println(p));
+	}
 
 	private void printLine() {
 		System.out.println("----------------------------------");
